@@ -9,7 +9,7 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.api;
+package org.eclipse.kapua.commons.service.event.store.api;
 
 import java.util.Date;
 
@@ -20,14 +20,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import org.eclipse.kapua.commons.service.event.api.ServiceEventStoreXmlRegistry;
+import org.eclipse.kapua.commons.service.event.store.api.EventStoreXmlRegistry;
 import org.eclipse.kapua.event.ServiceEvent.EventStatus;
 import org.eclipse.kapua.model.KapuaUpdatableEntity;
 import org.eclipse.kapua.model.id.KapuaId;
 import org.eclipse.kapua.model.id.KapuaIdAdapter;
 import org.eclipse.kapua.model.xml.DateXmlAdapter;
 
-@XmlRootElement(name = "event")
+@XmlRootElement(name = "eventStoreRecord")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = { "contextId",
         "timestamp",
@@ -42,11 +42,11 @@ import org.eclipse.kapua.model.xml.DateXmlAdapter;
         "status",
         "note",
 }, //
-        factoryClass = ServiceEventStoreXmlRegistry.class, //
-        factoryMethod = "newKapuaEvent")
-public interface ServiceEvent extends KapuaUpdatableEntity {
+        factoryClass = EventStoreXmlRegistry.class, //
+        factoryMethod = "newEventStoreRecord")
+public interface EventStoreRecord extends KapuaUpdatableEntity {
 
-    public static final String TYPE = "kapuaEvent";
+    public static final String TYPE = "eventStoreRecord";
 
     public default String getType() {
         return TYPE;

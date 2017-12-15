@@ -9,18 +9,23 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.internal;
+package org.eclipse.kapua.commons.service.event.store.api;
 
-import org.eclipse.kapua.commons.model.query.KapuaListResultImpl;
-import org.eclipse.kapua.commons.service.event.api.ServiceEvent;
-import org.eclipse.kapua.commons.service.event.api.ServiceEventListResult;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.eclipse.kapua.model.query.KapuaQuery;
 
 /**
- * KapuaEvent list result implementation.
- *
+ * KapuaEvent query definition.
+ * 
  * @since 1.0
+ * 
  */
-public class ServiceEventListResultImpl extends KapuaListResultImpl<ServiceEvent> implements ServiceEventListResult {
-
-    private static final long serialVersionUID = -5118004898345748297L;
+@XmlRootElement(name = "query")
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(factoryClass = EventStoreXmlRegistry.class, factoryMethod = "newQuery")
+public interface EventStoreRecordQuery extends KapuaQuery<EventStoreRecord> {
 }

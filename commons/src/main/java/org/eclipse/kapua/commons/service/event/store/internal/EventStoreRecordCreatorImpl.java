@@ -9,30 +9,30 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.internal;
+package org.eclipse.kapua.commons.service.event.store.internal;
 
-import org.eclipse.kapua.commons.model.query.predicate.AbstractKapuaQuery;
-import org.eclipse.kapua.commons.service.event.api.ServiceEvent;
-import org.eclipse.kapua.commons.service.event.api.ServiceEventStoreQuery;
+import org.eclipse.kapua.commons.model.AbstractKapuaEntityCreator;
+import org.eclipse.kapua.commons.service.event.store.api.EventStoreRecord;
+import org.eclipse.kapua.commons.service.event.store.api.EventStoreRecordCreator;
 import org.eclipse.kapua.model.id.KapuaId;
 
-public class ServiceEventStoreQueryImpl extends AbstractKapuaQuery<ServiceEvent> implements ServiceEventStoreQuery {
+/**
+ * KapuaEvent creator service implementation.
+ * 
+ * @since 1.0
+ * 
+ */
+public class EventStoreRecordCreatorImpl extends AbstractKapuaEntityCreator<EventStoreRecord> implements EventStoreRecordCreator {
+
+    private static final long serialVersionUID = 1048699703033893534L;
 
     /**
      * Constructor
-     */
-    public ServiceEventStoreQueryImpl() {
-        super();
-    }
-
-    /**
-     * Constructor
-     *
+     * 
      * @param scopeId
      */
-    public ServiceEventStoreQueryImpl(KapuaId scopeId) {
-        this();
-        setScopeId(scopeId);
+    public EventStoreRecordCreatorImpl(KapuaId scopeId) {
+        super(scopeId);
     }
 
 }

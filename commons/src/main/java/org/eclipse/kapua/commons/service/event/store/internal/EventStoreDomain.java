@@ -9,7 +9,7 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.internal;
+package org.eclipse.kapua.commons.service.event.store.internal;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,12 +28,12 @@ import com.google.common.collect.Lists;
  * @since 1.0
  *
  */
-public class ServiceEventDomain extends AbstractKapuaEntity implements Domain {
+public class EventStoreDomain extends AbstractKapuaEntity implements Domain {
 
     private static final long serialVersionUID = 2624648055164592528L;
 
-    private String name = "kapuaEvent";
-    private String serviceName = "kapuaEventService";
+    private String name = "eventStoreRecird";
+    private String serviceName = "eventStoreService";
     private Set<Actions> actions = new HashSet<>(Lists.newArrayList(Actions.read, Actions.delete, Actions.write));
 
     @Override

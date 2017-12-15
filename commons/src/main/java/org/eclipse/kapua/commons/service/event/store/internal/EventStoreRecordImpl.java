@@ -9,7 +9,7 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.internal;
+package org.eclipse.kapua.commons.service.event.store.internal;
 
 import java.util.Date;
 
@@ -27,13 +27,13 @@ import javax.persistence.TemporalType;
 
 import org.eclipse.kapua.commons.model.AbstractKapuaUpdatableEntity;
 import org.eclipse.kapua.commons.model.id.KapuaEid;
-import org.eclipse.kapua.commons.service.event.api.ServiceEvent;
+import org.eclipse.kapua.commons.service.event.store.api.EventStoreRecord;
 import org.eclipse.kapua.event.ServiceEvent.EventStatus;
 import org.eclipse.kapua.model.id.KapuaId;
 
-@Entity(name = "KapuaEvent")
-@Table(name = "sys_service_event")
-public class ServiceEventImpl extends AbstractKapuaUpdatableEntity implements ServiceEvent {
+@Entity(name = "EventStoreRecord")
+@Table(name = "sys_event_store")
+public class EventStoreRecordImpl extends AbstractKapuaUpdatableEntity implements EventStoreRecord {
 
     private static final long serialVersionUID = -2416000835110726619L;
 
@@ -85,11 +85,11 @@ public class ServiceEventImpl extends AbstractKapuaUpdatableEntity implements Se
     @Column(name = "note", nullable = true, updatable = true)
     private String note;
 
-    public ServiceEventImpl() {
+    public EventStoreRecordImpl() {
         status = EventStatus.TRIGGERED;
     }
 
-    public ServiceEventImpl(KapuaId scopeId) {
+    public EventStoreRecordImpl(KapuaId scopeId) {
         setScopeId(scopeId);
     }
 

@@ -9,25 +9,25 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.api;
+package org.eclipse.kapua.commons.service.event.store.api;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
 import org.eclipse.kapua.locator.KapuaLocator;
 
 @XmlRegistry
-public class ServiceEventStoreXmlRegistry {
+public class EventStoreXmlRegistry {
 
 
     private final KapuaLocator locator = KapuaLocator.getInstance();
-    private final ServiceEventStoreFactory kapuaEventFactory = locator.getFactory(ServiceEventStoreFactory.class);
+    private final EventStoreFactory kapuaEventFactory = locator.getFactory(EventStoreFactory.class);
 
     /**
      * Creates a new kapuaEvent instance
      * 
      * @return
      */
-    public ServiceEvent newKapuaEvent() {
+    public EventStoreRecord newEventStoreRecord() {
         return kapuaEventFactory.newEntity(null);
     }
 
@@ -36,7 +36,7 @@ public class ServiceEventStoreXmlRegistry {
      * 
      * @return
      */
-    public ServiceEventCreator newKapuaEventCreator() {
+    public EventStoreRecordCreator newEventStoreRecordCreator() {
         return kapuaEventFactory.newCreator(null);
     }
 
@@ -45,11 +45,11 @@ public class ServiceEventStoreXmlRegistry {
      * 
      * @return
      */
-    public ServiceEventListResult newKapuaEventListResult() {
+    public EventStoreRecordListResult newEventStoreRecordListResult() {
         return kapuaEventFactory.newListResult();
     }
 
-    public ServiceEventStoreQuery newQuery() {
+    public EventStoreRecordQuery newQuery() {
         return kapuaEventFactory.newQuery(null);
     }
 

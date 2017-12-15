@@ -9,10 +9,10 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.api;
+package org.eclipse.kapua.commons.service.event.store.api;
 
 import org.eclipse.kapua.KapuaIllegalArgumentException;
-import org.eclipse.kapua.commons.service.event.internal.ServiceEventImpl;
+import org.eclipse.kapua.commons.service.event.store.internal.EventStoreRecordImpl;
 
 /**
  * Utility to convert event from/to entity event
@@ -33,7 +33,7 @@ public class ServiceEventUtil {
      * @return
      * @throws KapuaIllegalArgumentException
      */
-    public static org.eclipse.kapua.event.ServiceEvent toServiceEventBus(ServiceEvent serviceEventEntity) throws KapuaIllegalArgumentException {
+    public static org.eclipse.kapua.event.ServiceEvent toServiceEventBus(EventStoreRecord serviceEventEntity) throws KapuaIllegalArgumentException {
         org.eclipse.kapua.event.ServiceEvent newEvent = new org.eclipse.kapua.event.ServiceEvent();
         if (serviceEventEntity.getId() == null) {
             throw new KapuaIllegalArgumentException("id", null);
@@ -56,18 +56,18 @@ public class ServiceEventUtil {
 
     /**
      * Convert the service bus object to the service event entity. It should be used on a fresh service event bus object (if already persisted please use the
-     * {@link #mergeToEntity(ServiceEvent, org.eclipse.kapua.event.ServiceEvent)} method)
+     * {@link #mergeToEntity(EventStoreRecord, org.eclipse.kapua.event.ServiceEvent)} method)
      *
      * @param serviceEventBus
      * @return
      * @throws KapuaIllegalArgumentException
      *             if the service event bus id is not null
      */
-    public static ServiceEvent fromServiceEventBus(org.eclipse.kapua.event.ServiceEvent serviceEventBus) throws KapuaIllegalArgumentException {
+    public static EventStoreRecord fromServiceEventBus(org.eclipse.kapua.event.ServiceEvent serviceEventBus) throws KapuaIllegalArgumentException {
         if (serviceEventBus.getId() != null) {
             throw new KapuaIllegalArgumentException("id", serviceEventBus.getId());
         }
-        return mergeToEntityInternal(new ServiceEventImpl(), serviceEventBus);
+        return mergeToEntityInternal(new EventStoreRecordImpl(), serviceEventBus);
     }
 
     /**
@@ -78,7 +78,7 @@ public class ServiceEventUtil {
      * @throws KapuaIllegalArgumentException
      *             if the service event bus id is null or differs to the service event entity
      */
-    public static ServiceEvent mergeToEntity(ServiceEvent serviceEventEntity, org.eclipse.kapua.event.ServiceEvent serviceEventBus) throws KapuaIllegalArgumentException {
+    public static EventStoreRecord mergeToEntity(EventStoreRecord serviceEventEntity, org.eclipse.kapua.event.ServiceEvent serviceEventBus) throws KapuaIllegalArgumentException {
         if (serviceEventEntity.getId() == null) {
             throw new KapuaIllegalArgumentException("id", null);
         }
@@ -88,7 +88,7 @@ public class ServiceEventUtil {
         return mergeToEntityInternal(serviceEventEntity, serviceEventBus);
     }
 
-    private static ServiceEvent mergeToEntityInternal(ServiceEvent serviceEventEntity, org.eclipse.kapua.event.ServiceEvent serviceEventBus) {
+    private static EventStoreRecord mergeToEntityInternal(EventStoreRecord serviceEventEntity, org.eclipse.kapua.event.ServiceEvent serviceEventBus) {
         serviceEventEntity.setContextId(serviceEventBus.getContextId());
         serviceEventEntity.setTimestamp(serviceEventBus.getTimestamp());
         serviceEventEntity.setUserId(serviceEventBus.getUserId());

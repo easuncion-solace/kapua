@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2017 Eurotech and/or its affiliates and others
+ * Copyright (c) 2017 Eurotech and/or its affiliates and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +9,10 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.api;
+package org.eclipse.kapua.commons.service.event.store.api;
 
-import org.eclipse.kapua.model.KapuaUpdatableEntityPredicates;
+import org.eclipse.kapua.model.KapuaEntityCreator;
 
-public interface ServiceEventStorePredicates extends KapuaUpdatableEntityPredicates {
-
-    public static final String EVENT_STATUS = "status";
-    public static final String SERVICE_NAME = "service";
+public interface EventStoreRecordCreator extends KapuaEntityCreator<EventStoreRecord> {
 
 }

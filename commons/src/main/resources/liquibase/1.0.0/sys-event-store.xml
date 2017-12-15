@@ -15,12 +15,12 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd"
-  logicalFilePath="KapuaDB/service-events-0.3.0.xml">
+  logicalFilePath="KapuaDB/changelog-event-store-1.0.0.xml">
 
     <include relativeToChangelogFile="true" file="../common-properties.xml" />
 
-    <changeSet id="system-configuration-service-events-0.3.0" author="eurotech">
-        <createTable tableName="sys_service_event">
+    <changeSet id="changelog-event-store-1.0.0_createTable" author="eurotech">
+        <createTable tableName="sys_event_store">
             <column name="scope_id" type="bigint(21) unsigned"/>
             <column name="id" type="bigint(21) unsigned" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -66,7 +66,7 @@
         </createTable>
 
         <rollback>
-            <dropTable tableName="sys_service_event"/>
+            <dropTable tableName="sys_event_store"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

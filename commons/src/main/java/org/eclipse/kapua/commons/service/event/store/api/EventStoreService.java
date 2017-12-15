@@ -9,7 +9,7 @@
  * Contributors:
  *     Eurotech - initial API and implementation
  *******************************************************************************/
-package org.eclipse.kapua.commons.service.event.api;
+package org.eclipse.kapua.commons.service.event.store.api;
 
 import org.eclipse.kapua.KapuaException;
 import org.eclipse.kapua.model.id.KapuaId;
@@ -25,8 +25,8 @@ import org.eclipse.kapua.service.KapuaUpdatableEntityService;
  * @since 1.0
  * 
  */
-public interface ServiceEventStoreService extends KapuaEntityService<ServiceEvent, ServiceEventCreator>,
-        KapuaUpdatableEntityService<ServiceEvent> {
+public interface EventStoreService extends KapuaEntityService<EventStoreRecord, EventStoreRecordCreator>,
+        KapuaUpdatableEntityService<EventStoreRecord> {
 
     /**
      * Finds the kapuaEvent by kapuaEvent identifiers
@@ -35,19 +35,19 @@ public interface ServiceEventStoreService extends KapuaEntityService<ServiceEven
      * @return
      * @throws KapuaException
      */
-    public ServiceEvent find(KapuaId id)
+    public EventStoreRecord find(KapuaId id)
             throws KapuaException;
 
     /**
-     * Returns the {@link ServiceEventListResult} with elements matching the provided query.
+     * Returns the {@link EventStoreRecordListResult} with elements matching the provided query.
      * 
      * @param query
-     *            The {@link ServiceEventStoreQuery} used to filter results.
-     * @return The {@link ServiceEventListResult} with elements matching the query parameter.
+     *            The {@link EventStoreRecordQuery} used to filter results.
+     * @return The {@link EventStoreRecordListResult} with elements matching the query parameter.
      * @throws KapuaException
      * @since 1.0.0
      */
-    public ServiceEventListResult query(KapuaQuery<ServiceEvent> query)
+    public EventStoreRecordListResult query(KapuaQuery<EventStoreRecord> query)
             throws KapuaException;
 
 }
