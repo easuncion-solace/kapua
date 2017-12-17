@@ -18,5 +18,6 @@
   logicalFilePath="KapuaDB/changelog-event-store-1.0.0.xml">
                       
     <include relativeToChangelogFile="true" file="./sys-event-store.xml" />
+    <include relativeToChangelogFile="true" file="./sys-housekeeper-run.xml" />
 
 </databaseChangeLog>
