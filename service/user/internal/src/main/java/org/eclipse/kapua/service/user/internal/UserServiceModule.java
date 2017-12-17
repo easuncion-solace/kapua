@@ -13,12 +13,9 @@ package org.eclipse.kapua.service.user.internal;
 
 import javax.inject.Inject;
 
-import org.eclipse.kapua.KapuaException;
 import org.eclipse.kapua.commons.event.ServiceEventListenerConfiguration;
 import org.eclipse.kapua.commons.event.ServiceEventModule;
 import org.eclipse.kapua.commons.event.ServiceEventModuleConfiguration;
-import org.eclipse.kapua.event.ServiceEvent;
-import org.eclipse.kapua.event.ServiceEventBusListener;
 import org.eclipse.kapua.locator.KapuaProvider;
 import org.eclipse.kapua.service.user.UserService;
 import org.eclipse.kapua.service.user.internal.setting.KapuaUserSetting;
@@ -37,13 +34,7 @@ public class UserServiceModule extends ServiceEventModule {
         selc[0] = new ServiceEventListenerConfiguration(
                 kas.getString(KapuaUserSettingKeys.ACCOUNT_EVENT_ADDRESS),
                 kas.getString(KapuaUserSettingKeys.USER_SUBSCRIPTION_NAME),
-                new ServiceEventBusListener() {
-
-                    @Override
-                    public void onKapuaEvent(ServiceEvent kapuaEvent) throws KapuaException {
-                        userService.onKapuaEvent(kapuaEvent);
-                    }
-                });
+                (serviceEvent) -> userService.onKapuaEvent(serviceEvent));
         return new ServiceEventModuleConfiguration(
                 kas.getString(KapuaUserSettingKeys.USER_INTERNAL_EVENT_ADDRESS),
                 kas.getList(String.class, KapuaUserSettingKeys.USER_SERVICES_NAMES), 
